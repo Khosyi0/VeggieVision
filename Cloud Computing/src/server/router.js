@@ -14,9 +14,8 @@ Router.get('/scan', (req, res) => {
     res.send("GET SCAN")
 })
 
-Router.post('/scan', (req, res) => {
+Router.post('/scan', async(req, res) => {
     res.send("POST SCAN")
 })
-
 
 module.exports = Router;
