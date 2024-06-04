@@ -1,0 +1,16 @@
+{
+  "name": "api---express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tes.js",
+  "scripts": {
+    "test": "nodemon ./src/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tensorflow/tfjs-node": "^4.19.0",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.2"
+  }
+}
