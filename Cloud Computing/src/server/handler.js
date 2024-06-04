@@ -9,7 +9,7 @@ const scanData = ((req, res, next) => {
 })
 
 const postImage = ((req, res, next) => {
-    console.log("Post Image")
+    console.log("POST IMAGE")
     next()
 })
 

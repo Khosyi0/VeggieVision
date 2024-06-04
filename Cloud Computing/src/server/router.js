@@ -7,11 +7,15 @@ Router.get('/scan', scanData)
 Router.post('/scan', postImage)
 
 Router.get('/', (req, res) => {
-    res.send("Hello World")
+    res.send("GET HOME")
 })
 
 Router.get('/scan', (req, res) => {
-    // res.send("Scan Homepage")
+    res.send("GET SCAN")
+})
+
+Router.post('/scan', (req, res) => {
+    res.send("POST SCAN")
 })
 
 
