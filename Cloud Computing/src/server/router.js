@@ -28,7 +28,7 @@ const loadModel = async() => {
 }
 
 Router.post('/scan', upload.single('image'), (req, res, next) => {
-    console.log('File Received:', req.file);  // Log file untuk debugging
+    // console.log('File Received:', req.file);  // Log file untuk debugging
     next();
 }, async (req, res) => {
     await handlerPrediction(req, res, model);

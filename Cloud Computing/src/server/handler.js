@@ -16,8 +16,8 @@ const scanData = ((req, res, next) => {
 async function handlerPrediction(req, res, model) {
     
     try {
-        console.log('Handling prediction...');  // Log untuk debugging
-        console.log('Received file:', req.file);  // Log untuk debugging
+        // console.log('Handling prediction...');  // Log untuk debugging
+        // console.log('Received file:', req.file);  // Log untuk debugging
 
         if(!req.file) {
             throw new Error('No File Upload');
@@ -37,17 +37,22 @@ async function handlerPrediction(req, res, model) {
         const confidence = Math.max(...predictionArray) * 100;
         const predictedClass = predictionArray.indexOf(Math.max(...predictionArray));
 
-        const classLabels = {0: 'stale', 1:'fresh'};
-        const predictedLabel = classLabels[predictedClass];
+        console.log('Predicted Class : ', predictedClass);
+        console.log('Confidence : ', confidence);
+        console.log('Prediction Array : ', predictionArray);
+
+        const classLabels = {0: 'fresh', 1:'stale'};
+        const predictedLabel = classLabels[Math.round(confidence)];
 
         fs.unlinkSync(imagePath);
 
         let freshnessPercentage;
-        if (predictedLabel === 'stale') {
+        if (predictedLabel === 'fresh') {
             freshnessPercentage = confidence;
         } else {
             freshnessPercentage = 100 - confidence;
         }
+        console.log(predictedLabel);
         res.json( {Label: predictedLabel, Percentage: freshnessPercentage} )
     } catch (error) {
         console.error(error);
