@@ -1,4 +1,5 @@
-const { fileSystem } = require("@tensorflow/tfjs-node/dist/io")
+const fs = require('fs');
+const tf = require('@tensorflow/tfjs-node');
 
 const myLogger = ((req, res, next) => {
     console.log("Homepage")
@@ -10,29 +11,37 @@ const scanData = ((req, res, next) => {
     next()
 })
 
-const postImage = (async(req, res, next) => {
-    console.log("POST IMAGE")
-    if(!req.file) {
-        return res.status(400).send('No File');
-    }
 
+
+async function handlerPrediction(req, res, model) {
+    
     try {
-        imagePath = req.file.path;
-        const tensor = await processImage(imagePath)
+        console.log('Handling prediction...');  // Log untuk debugging
+        console.log('Received file:', req.file);  // Log untuk debugging
 
-        const prediction = model.predict(tensor);
-        const predictionArray = prediction.arraySync();
+        if(!req.file) {
+            throw new Error('No File Upload');
+        }
 
-        fileSystem.unlinkSync(imagePath);
+        const imagePath = req.file.path;
 
-        const result = predictionArray[0] > 0.5 ? 'Asu' : 'Kucing';
-        res.json({ prediction: result });
+        const imageBuffer = fs.readFileSync(imagePath);
+        const iamgeTensor = tf.node.decodeImage(imageBuffer);
 
-    } catch (error){
+        const resizedImage = tf.image.resizeBilinear(iamgeTensor, [150, 150]);
+        const normalizedImage = resizedImage.div(tf.scalar(255)).expandDims(0);
+
+        const prediction = model.predict(normalizedImage);
+        const output = prediction.arraySync();
+
+        fs.unlinkSync(imagePath);
+
+        const result = output[0] > 0.5 ? 'asu' : 'kucing'
+        res.json( {prediction: result} )
+    } catch (error) {
         console.error(error);
-        res.status(500).send('Error Process Image')
+        res.status(500).send('Error Process image')   
     }
-    next()
-})
+}
 
-module.exports = {myLogger, scanData, postImage}
+module.exports = {myLogger, scanData, handlerPrediction}

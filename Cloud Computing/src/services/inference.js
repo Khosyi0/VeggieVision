@@ -1,12 +1,11 @@
-const tfjs = require('@tensorflow/tfjs-node')
+const tf = require('@tensorflow/tfjs-node')
 const fs = require('fs')
 
-
-
-function loadModel() {
-    const modelUrl = "file:/../../model-tfjs/model.json"
-    return tfjs.loadLayersModel(modelUrl)
-}
+const loadModel = (async() => {
+    const modelPath = "file://../../../model-tfjs/model.json"
+    model = await tf.loadGraphModel(modelPath);
+    console.log('Load Model');
+})
 
 async function predict(imageBuffer) {
     const tensor = tf.node.decodeImage(fs.readFileSync(imageBuffer), 3)

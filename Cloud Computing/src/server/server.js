@@ -1,12 +1,13 @@
 const express = require('express')
 const app = express()
-const Router = require('./router')
-const mw = require('./handler.js')
+const {Router, loadModel} = require('./router')
 
+app.use(express.json());
 app.use('/', Router)
 
 const port = 8000
 
-app.listen(port, () => {
+app.listen(port, async() => {
+    await loadModel();
     console.log(`Running on http://localhost:${[port]}/`)
 })
