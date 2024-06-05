@@ -32,12 +32,23 @@ async function handlerPrediction(req, res, model) {
         const normalizedImage = resizedImage.div(tf.scalar(255)).expandDims(0);
 
         const prediction = model.predict(normalizedImage);
-        const output = prediction.arraySync();
+        const predictionArray = prediction.arraySync()[0];
+
+        const confidence = Math.max(...predictionArray) * 100;
+        const predictedClass = predictionArray.indexOf(Math.max(...predictionArray));
+
+        const classLabels = {0: 'stale', 1:'fresh'};
+        const predictedLabel = classLabels[predictedClass];
 
         fs.unlinkSync(imagePath);
 
-        const result = output[0] > 0.5 ? 'asu' : 'kucing'
-        res.json( {prediction: result} )
+        let freshnessPercentage;
+        if (predictedLabel === 'stale') {
+            freshnessPercentage = confidence;
+        } else {
+            freshnessPercentage = 100 - confidence;
+        }
+        res.json( {Label: predictedLabel, Percentage: freshnessPercentage} )
     } catch (error) {
         console.error(error);
         res.status(500).send('Error Process image')   
