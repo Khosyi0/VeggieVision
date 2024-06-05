@@ -42,17 +42,17 @@ async function handlerPrediction(req, res, model) {
         console.log('Prediction Array : ', predictionArray);
 
         const classLabels = {0: 'fresh', 1:'stale'};
-        const predictedLabel = classLabels[Math.round(confidence)];
+        const predictedLabel = classLabels[Math.round(...predictionArray)];
 
         fs.unlinkSync(imagePath);
 
         let freshnessPercentage;
-        if (predictedLabel === 'fresh') {
+        if (predictedLabel === 'stale') {
             freshnessPercentage = confidence;
         } else {
             freshnessPercentage = 100 - confidence;
+            // freshnessPercentage = confidence; //Confidence asli
         }
-        console.log(predictedLabel);
         res.json( {Label: predictedLabel, Percentage: freshnessPercentage} )
     } catch (error) {
         console.error(error);
