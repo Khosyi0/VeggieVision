@@ -22,13 +22,12 @@ Router.get('/scan', (req, res) => {
 let model;
 
 const loadModel = async() => {
-    const modelPath = path.resolve(__dirname, '../../model-tfjs/model.json');
+    const modelPath = path.resolve(__dirname, '../../VeggieVisionModel/model.json');
     model = await tf.loadLayersModel(`file://${modelPath}`);
     console.log("Model Loaded")
 }
 
 Router.post('/scan', upload.single('image'), (req, res, next) => {
-    // console.log('File Received:', req.file);  // Log file untuk debugging
     next();
 }, async (req, res) => {
     await handlerPrediction(req, res, model);

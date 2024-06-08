@@ -26,32 +26,61 @@ async function handlerPrediction(req, res, model) {
         const imagePath = req.file.path;
 
         const imageBuffer = fs.readFileSync(imagePath);
-        const iamgeTensor = tf.node.decodeImage(imageBuffer);
+        // const imageTensor = tf.node.decodeImage(imageBuffer);
 
-        const resizedImage = tf.image.resizeBilinear(iamgeTensor, [150, 150]);
-        const normalizedImage = resizedImage.div(tf.scalar(255)).expandDims(0);
+        // const resizedImage = tf.image.resizeBilinear(imageTensor, [150, 150]);
+        // const normalizedImage = resizedImage.div(tf.scalar(255)).expandDims(0);
 
-        const prediction = model.predict(normalizedImage);
-        const predictionArray = prediction.arraySync()[0];
+        const tensor = tf.node
+            .decodeJpeg(imageBuffer)
+            .resizeNearestNeighbor([150, 150]) // Sesuaikan ukuran dengan input model
+            .expandDims()
+            .toFloat()
+            .div(tf.scalar(255.0))
 
-        const confidence = Math.max(...predictionArray) * 100;
-        const predictedClass = predictionArray.indexOf(Math.max(...predictionArray));
+        // const prediction = model.predict(normalizedImage);
+        // const predictionArray = prediction.arraySync()[0];
+        const prediction = model.predict(tensor);
+        const confidence = Math.max(...await prediction.data()) * 100;
 
-        console.log('Predicted Class : ', predictedClass);
+        const classLabels = {0: 'fresh_apple', 1: 'fresh_banana', 2: 'fresh_bitter_gourd', 3: 'fresh_capsicum', 4: 'fresh_orange', 5: 'fresh_tomato', 6: 'stale_apple', 7: 'stale_banana', 8: 'stale_bitter_gourd', 9: 'stale_capsicum', 10: 'stale_orange', 11: 'stale_tomato'};
+        const predictedClass = tf.argMax(prediction, 1).dataSync()[0];
+        const predictedLabel = classLabels[predictedClass];
+        
         console.log('Confidence : ', confidence);
-        console.log('Prediction Array : ', predictionArray);
-
-        const classLabels = {0: 'fresh', 1:'stale'};
-        const predictedLabel = classLabels[Math.round(...predictionArray)];
+        console.log('PredictedLabel : ', predictedLabel);
+        
+        // console.log('Prediction Array : ', predictionArray);
 
         fs.unlinkSync(imagePath);
 
         let freshnessPercentage;
-        if (predictedLabel === 'stale') {
+        // if(predictedLabel === 'fresh_apple') {
+        //     freshnessPercentage = confidence;
+        // }
+        // if(predictedLabel === 'fresh_banana') {
+        //     freshnessPercentage = confidence;
+        // }
+        // if(predictedLabel === 'fresh_bitter_gourd') {
+        //     freshnessPercentage = confidence;
+        // }
+        // if(predictedLabel === 'fresh_capsicum') {
+        //     freshnessPercentage = confidence;
+        // }
+        // if(predictedLabel === 'fresh_orange') {
+        //     freshnessPercentage = confidence;
+        // }
+        // if(predictedLabel === 'fresh_tomato') {
+        //     freshnessPercentage = confidence;
+        // }
+        
+        
+
+        if (predictedLabel === 'fresh') {
             freshnessPercentage = confidence;
         } else {
-            freshnessPercentage = 100 - confidence;
-            // freshnessPercentage = confidence; //Confidence asli
+            // freshnessPercentage = 100 - confidence;
+            freshnessPercentage = confidence; //Confidence asli
         }
         res.json( {Label: predictedLabel, Percentage: freshnessPercentage} )
     } catch (error) {
