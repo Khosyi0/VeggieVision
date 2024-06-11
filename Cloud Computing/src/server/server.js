@@ -10,7 +10,7 @@ const port = 8000
 
 app.listen(port, async() => {
     await loadModel();
-    await sequelize.authenticate();
-    await sequelize.sync();
+    // await sequelize.authenticate();
+    // await sequelize.sync();
     console.log(`Running on http://localhost:${[port]}/`)
 })

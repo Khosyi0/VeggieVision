@@ -118,9 +118,6 @@ const accessResource = ((req, res) => {
 async function handlerPrediction(req, res, model) {
     
     try {
-        // console.log('Handling prediction...');  // Log untuk debugging
-        // console.log('Received file:', req.file);  // Log untuk debugging
-
         if(!req.file) {
             throw new Error('No File Upload');
         }
@@ -128,10 +125,6 @@ async function handlerPrediction(req, res, model) {
         const imagePath = req.file.path;
 
         const imageBuffer = fs.readFileSync(imagePath);
-        // const imageTensor = tf.node.decodeImage(imageBuffer);
-
-        // const resizedImage = tf.image.resizeBilinear(imageTensor, [150, 150]);
-        // const normalizedImage = resizedImage.div(tf.scalar(255)).expandDims(0);
 
         const tensor = tf.node
             .decodeJpeg(imageBuffer)
@@ -140,8 +133,6 @@ async function handlerPrediction(req, res, model) {
             .toFloat()
             .div(tf.scalar(255.0))
 
-        // const prediction = model.predict(normalizedImage);
-        // const predictionArray = prediction.arraySync()[0];
         const prediction = model.predict(tensor);
         const confidence = Math.max(...await prediction.data()) * 100;
 
@@ -151,40 +142,17 @@ async function handlerPrediction(req, res, model) {
         
         console.log('Confidence : ', confidence);
         console.log('PredictedLabel : ', predictedLabel);
-        
-        // console.log('Prediction Array : ', predictionArray);
 
         fs.unlinkSync(imagePath);
 
         let freshnessPercentage;
-        // if(predictedLabel === 'fresh_apple') {
-        //     freshnessPercentage = confidence;
-        // }
-        // if(predictedLabel === 'fresh_banana') {
-        //     freshnessPercentage = confidence;
-        // }
-        // if(predictedLabel === 'fresh_bitter_gourd') {
-        //     freshnessPercentage = confidence;
-        // }
-        // if(predictedLabel === 'fresh_capsicum') {
-        //     freshnessPercentage = confidence;
-        // }
-        // if(predictedLabel === 'fresh_orange') {
-        //     freshnessPercentage = confidence;
-        // }
-        // if(predictedLabel === 'fresh_tomato') {
-        //     freshnessPercentage = confidence;
-        // }
-        
-        
-
-        if (predictedLabel === 'fresh') {
+        if (predictedLabel.indexOf('fresh') !== -1) {
             freshnessPercentage = confidence;
         } else {
-            // freshnessPercentage = 100 - confidence;
-            freshnessPercentage = confidence; //Confidence asli
+            freshnessPercentage = 100 - confidence;
+            // freshnessPercentage = confidence; //Confidence asli
         }
-        res.json( {Label: predictedLabel, Percentage: freshnessPercentage} )
+        res.json( {Label: predictedLabel, Percentage: freshnessPercentage.toFixed(2)} )
     } catch (error) {
         console.error(error);
         res.status(500).send('Error Process image')   
