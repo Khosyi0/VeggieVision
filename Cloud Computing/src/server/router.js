@@ -1,5 +1,5 @@
 const express = require('express');
-const { myLogger, scanData, handlerPrediction } = require('./handler');
+const { myLogger, scanData, handlerPrediction, login, signup, accessResource } = require('./handler');
 const Router = express.Router();
 const multer = require('multer');
 const path = require('path');
@@ -11,6 +11,9 @@ const upload = multer({ dest:'uploads/' });
 Router.get('/', myLogger)
 Router.get('/scan', scanData)
 
+Router.post('/login', login)
+Router.post('/signup', signup)
+Router.get('/accessResource', accessResource)
 Router.get('/', (req, res) => {
     res.send("GET HOME")
 })
