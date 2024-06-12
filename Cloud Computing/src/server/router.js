@@ -9,18 +9,15 @@ const upload = multer({ dest:'uploads/' });
 
 
 Router.get('/', myLogger)
-Router.get('/scan', scanData)
+
+Router.get('/accessResource', accessResource)
+
+Router.get('/article', (res) => {
+    res.send("ARTICLE GET")
+})
 
 Router.post('/login', login)
 Router.post('/signup', signup)
-Router.get('/accessResource', accessResource)
-Router.get('/', (req, res) => {
-    res.send("GET HOME")
-})
-
-Router.get('/scan', (req, res) => {
-    res.send("GET SCAN")
-})
 
 let model;
 
