@@ -77,6 +77,53 @@ const signup = (async(req, res, next) => {
     });
 })
 
+let articles = [];
+
+// Fungsi untuk mendapatkan artikel
+const getArticles = (req, res) => {
+    res.json({
+        status: "ok",
+        totalResults: articles.length,
+        articles: articles
+    });
+};
+
+// Fungsi untuk menambah artikel
+const addArticle = (req, res) => {
+    const { source, author, title, description, url, urlToImage, publishedAt, content } = req.body;
+
+    // Validasi input
+    if (!title || !url || !publishedAt) {
+        return res.status(400).json({ status: "error", message: "Title, URL, and PublishedAt are required fields" });
+    }
+
+    const article = {
+        source: source || { id: null, name: null },
+        author: author || null,
+        title,
+        description: description || null,
+        url,
+        urlToImage: urlToImage || null,
+        publishedAt,
+        content: content || null
+    };
+
+    articles.push(article);
+    res.json({ status: "ok", message: "Article added", article });
+};
+
+// Fungsi untuk menghapus artikel berdasarkan indeks
+const deleteArticle = (req, res) => {
+    const index = parseInt(req.params.index, 10);
+    if (index >= 0 && index < articles.length) {
+        const deletedArticle = articles.splice(index, 1);
+        res.json({ status: "ok", message: "Article deleted", article: deletedArticle });
+    } else {
+        res.status(404).json({ status: "error", message: "Article not found" });
+    }
+};
+
+
 const myLogger = ((req, res, next) => {
     console.log("Homepage")
     next()
@@ -159,4 +206,4 @@ async function handlerPrediction(req, res, model) {
     }
 }
 
-module.exports = {myLogger, scanData, handlerPrediction, login, signup, accessResource}
+module.exports = { myLogger, scanData, handlerPrediction, login, signup, accessResource, getArticles, addArticle, deleteArticle };

@@ -1,5 +1,5 @@
 const express = require('express');
-const { myLogger, scanData, handlerPrediction, login, signup, accessResource } = require('./handler');
+const { myLogger, scanData, handlerPrediction, login, signup, accessResource, getArticles, addArticle, deleteArticle } = require('./handler');
 const Router = express.Router();
 const multer = require('multer');
 const path = require('path');
@@ -12,9 +12,9 @@ Router.get('/', myLogger)
 
 Router.get('/accessResource', accessResource)
 
-Router.get('/article', (res) => {
-    res.send("ARTICLE GET")
-})
+Router.get('/articles', getArticles); // Rute untuk mendapatkan artikel
+Router.post('/articles', addArticle); // Rute untuk menambah artikel
+Router.delete('/articles/:index', deleteArticle);
 
 Router.post('/login', login)
 Router.post('/signup', signup)
