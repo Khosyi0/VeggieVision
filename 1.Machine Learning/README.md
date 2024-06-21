@@ -1,6 +1,6 @@
 # VeggieVision Machine Learning
 
-![Alt text](4. Image Documentation/Screenshot 2024-06-21 105407.png)
+![Alt text](4.ImageDocumentation/ML1.png)
 
 Machine Learning Task:
 - Search for the dataset
