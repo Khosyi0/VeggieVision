@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="greenApple_200">#bfe0e2</color>
+    <color name="greenApple_500">#438e96</color>
+    <color name="greenApple_700">#356169</color>
+
+    <color name="greenLeaf_200">#c8eac9</color>
+    <color name="greenLeaf_500">#4caf50</color>
+    <color name="greenLeaf_700">#2d6830</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="borderColorDefault">#c8eac9</color>
+    <color name="borderColorFocused">#4caf50</color>
+    <color name="borderColorError">#FF0000</color>
+
+    <color name="placeholder">#6FB6B6B6</color>
+</resources>

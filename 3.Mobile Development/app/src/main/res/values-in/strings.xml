@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">VeggieVision</string>
+    <string name="title_home">Beranda</string>
+    <string name="title_scan">Pindai</string>
+    <string name="title_history">Riwayat</string>
+    <string name="title_user">Profil</string>
+
+    <string name="app_desc">Mengawasi kondisi buah dan sayuran Anda</string>
+    <string name="register">DAFTAR</string>
+    <string name="login">MASUK</string>
+    <string name="logout">KELUAR</string>
+
+    <string name="sign_up">Daftar</string>
+    <string name="sign_in">Masuk</string>
+    <string name="scan">Pindai</string>
+    <string name="history">Riwayat</string>
+    <string name="user">Profil</string>
+
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="upload">Unggah</string>
+
+    <string name="name">Nama</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Kata Sandi</string>
+    <string name="change">Ubah</string>
+
+    <string name="your_web_client_id">230328058703-261jpo8ch9a8q1okcbbkc63gjhh4i3mo.apps.googleusercontent.com</string>
+
+    <string name="created_date">Tanggal Dibuat</string>
+    <string name="title">Judul</string>
+    <string name="description">Deskripsi</string>
+    <string name="retry">Coba lagi</string>
+
+    <string name="message_camera_show">Gagal memunculkan kamera.</string>
+    <string name="message_camera_take">Gagal mengambil gambar.</string>
+
+    <string name="permission_good">Permintaan izin diberikan.</string>
+    <string name="permission_bad">Permintaan izin ditolak.</string>
+
+    <string name="app_logo">App Logo</string>
+    <string name="step_title">Panduan Penggunaan Aplikasi VeggieVision</string>
+    <string name="step_description">Ikuti langkah-langkah di bawah ini untuk menggunakan aplikasi.</string>
+    <string name="registration_step">1. Registrasi Akun</string>
+    <string name="registration_description">- Buka aplikasi dan navigasi ke halaman registrasi.\n- Isi formulir pendaftaran dan verifikasi email Anda.</string>
+    <string name="login_step">2. Login ke Aplikasi</string>
+    <string name="login_description">- Buka aplikasi dan navigasi ke halaman login.\n- Masukkan informasi akun dan login.</string>
+    <string name="use_feature_step">3. Menggunakan Fitur Pendeteksi Kesegaran</string>
+    <string name="use_feature_description">- Akses fitur kamera, ambil foto buah atau sayuran.\n- Aplikasi akan menganalisis dan menampilkan hasil.</string>
+    <string name="save_history_step">4. Menyimpan dan Melihat History Scan</string>
+    <string name="save_history_description">- Simpan hasil scan dan akses riwayat scan di menu navigasi.</string>
+    <string name="logout_step">5. Logout dari Aplikasi</string>
+    <string name="logout_description">- Navigasi ke pengaturan akun dan logout dari aplikasi.</string>
+    <string name="forgot_password">Lupa Kata Sandi?</string>
+    <string name="fruit_vegetables">Buah / Sayuran</string>
+    <string name="percent">Persen</string>
+    <string name="result_title">Hasil Pindai</string>
+    <string name="hello">Halo, Nama</string>
+    <string name="get_started">KLIK UNTUK MULAI DI SINI</string>
+    <string name="empty_history">Tidak ada data dalam riwayat</string>
+
+</resources>

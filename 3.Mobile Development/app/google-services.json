@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "230328058703",
+    "firebase_url": "https://veggievision-b169c-default-rtdb.firebaseio.com",
+    "project_id": "veggievision-b169c",
+    "storage_bucket": "veggievision-b169c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:230328058703:android:25baefdfbc9807fb3bfb3a",
+        "android_client_info": {
+          "package_name": "com.capstone.veggievision"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "230328058703-2chbd2keksvih35llunc484fnmputm4b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.capstone.veggievision",
+            "certificate_hash": "706c2adb6f7e7a12756118b15a2f4717bd4e4198"
+          }
+        },
+        {
+          "client_id": "230328058703-261jpo8ch9a8q1okcbbkc63gjhh4i3mo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiOnzp48-NiiiHOwht44K1UXCRGtshwNs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "230328058703-261jpo8ch9a8q1okcbbkc63gjhh4i3mo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

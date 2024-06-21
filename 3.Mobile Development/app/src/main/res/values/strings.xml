@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">VeggieVision</string>
+    <string name="title_home">Home</string>
+    <string name="title_scan">Scan</string>
+    <string name="title_history">History</string>
+    <string name="title_user">User</string>
+
+    <string name="app_desc">Keep an eye on the state of your fruits and vegetables</string>
+    <string name="register">REGISTER</string>
+    <string name="login">LOGIN</string>
+    <string name="logout">LOG OUT</string>
+
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="scan">Scan</string>
+    <string name="history">History</string>
+    <string name="user">User</string>
+
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="upload">Upload</string>
+
+    <string name="name">Name</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="change">Change</string>
+
+    <string name="your_web_client_id">230328058703-261jpo8ch9a8q1okcbbkc63gjhh4i3mo.apps.googleusercontent.com</string>
+
+    <string name="created_date">Created Date</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="retry">Try again</string>
+
+    <string name="message_camera_show">Failed to show camera.</string>
+    <string name="message_camera_take">Failed to take picture.</string>
+
+    <string name="permission_good">Permission request granted</string>
+    <string name="permission_bad">Permission request denied</string>
+
+    <string name="app_logo">App Logo</string>
+    <string name="step_title">VeggieVision Application User Guide</string>
+    <string name="step_description">Follow the steps below to use the application.</string>
+    <string name="registration_step">1. Register an Account</string>
+    <string name="registration_description">- Open the application and navigate to the registration page.\n- Fill out the registration form and verify your email.</string>
+    <string name="login_step">2. Log In to the Application</string>
+    <string name="login_description">- Open the application and navigate to the login page.\n- Enter your account information and log in.</string>
+    <string name="use_feature_step">3. Use the Freshness Detection Feature</string>
+    <string name="use_feature_description">- Access the camera feature, take a photo of the fruit or vegetable.\n- The application will analyze and display the results.</string>
+    <string name="save_history_step">4. Save and View Scan History</string>
+    <string name="save_history_description">- Save the scan results and access the scan history from the navigation menu.</string>
+    <string name="logout_step">5. Log Out of the Application</string>
+    <string name="logout_description">- Navigate to the account settings and log out of the application.</string>
+
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="fruit_vegetables">Fruit / Vegetables</string>
+    <string name="percent">Percent</string>
+    <string name="result_title">Scan Result</string>
+    <string name="hello">Hello, Name</string>
+    <string name="get_started">GET STARTED HERE</string>
+    <string name="empty_history">There is no data in history</string>
+
+
+</resources>
