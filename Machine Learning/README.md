@@ -1,1 +1,0 @@
-# VeggieVision Machine Learning
